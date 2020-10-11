@@ -28,4 +28,14 @@ public class HistoryService {
     public GenericResponse insertHistory(TreatmentHistory history){
         return restTemplate.postForObject(BASE_URL + "insert-history", history, GenericResponse.class);
     }
+
+    public GenericResponse updateRecord(TreatmentHistory record){
+        GenericResponse response = restTemplate.postForObject(BASE_URL + "update-history",
+                record, GenericResponse.class);
+        return (response != null) ? response : new GenericResponse(0, "some error occurred", null);
+    }
+
+    public GenericResponse getSingleRecordById(String recordId){
+        return restTemplate.getForObject(BASE_URL + "get-history-by-id/" + recordId, GenericResponse.class);
+    }
 }

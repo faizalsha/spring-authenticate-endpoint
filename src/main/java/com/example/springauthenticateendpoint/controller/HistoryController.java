@@ -26,4 +26,15 @@ public class HistoryController {
     public GenericResponse insertHistory(@RequestBody TreatmentHistory history){
         return historyService.insertHistory(history);
     }
+
+    @RequestMapping(value = "update-record", method = RequestMethod.POST)
+    public GenericResponse updateRecord(@RequestBody TreatmentHistory record){
+        GenericResponse response = historyService.updateRecord(record);
+        return (response != null) ? response : new GenericResponse(0, "some error occurred", null);
+    }
+
+    @RequestMapping("get-history-by-id/{recordId}")
+    public GenericResponse getRecordById(@PathVariable String recordId){
+        return historyService.getSingleRecordById(recordId);
+    }
 }
