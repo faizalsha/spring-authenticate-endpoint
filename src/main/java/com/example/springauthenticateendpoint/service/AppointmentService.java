@@ -44,7 +44,15 @@ public class AppointmentService {
         return restTemplate.getForObject(BASE_URL + "get-slots" + physicianId + date.toString(), ResponseEntity.class);
     }
 
-    public ResponseEntity<List<Physician>> getPhysiciansBySpeciality(@PathVariable String speciality) {
+    public ResponseEntity<List<Physician>> getPhysiciansBySpeciality(String speciality) {
         return restTemplate.getForObject(BASE_URL + "get-physicians" + speciality, ResponseEntity.class);
+    }
+
+    public GenericResponse deleteAppointmentById(String appointmentId){
+        return restTemplate.getForObject(BASE_URL + "delete-appointment/" + appointmentId, GenericResponse.class);
+    }
+
+    public GenericResponse deleteAvailability(String availabilityId){
+        return restTemplate.getForObject(BASE_URL + "delete-availability/" + availabilityId, GenericResponse.class);
     }
 }
