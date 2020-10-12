@@ -1,5 +1,7 @@
 package com.example.springauthenticateendpoint.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,9 +9,10 @@ import javax.persistence.Id;
 @Entity
 public class Doctor {
 
-
 	@Id
-	private int id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	private String id;
 	
 	private String firstName;
 	private String lastName;
@@ -20,10 +23,10 @@ public class Doctor {
 	private String govermentId;
 	private String role;
 	private String speciality;
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getFirstName() {

@@ -1,23 +1,20 @@
 package com.example.springauthenticateendpoint.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 
 @Entity
 public class User {
 
+
 	@javax.persistence.Id
-	@GeneratedValue
-	private int Id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	private String Id;
 	
 	private String firstName;
 	private String lastName;
@@ -79,12 +76,14 @@ public class User {
 	public void setGovermentId(String govermentId) {
 		this.govermentId = govermentId;
 	}
-	public int getId() {
+
+	public String getId() {
 		return Id;
 	}
-	public void setId(int id) {
+
+	public void setId(String id) {
 		Id = id;
 	}
-	
-	
+
+
 }
