@@ -1,33 +1,27 @@
 package com.example.springauthenticateendpoint.controller;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springauthenticateendpoint.model.AuthRequest;
-import com.example.springauthenticateendpoint.model.Doctor;
+import com.example.springauthenticateendpoint.model.Physician;
 import com.example.springauthenticateendpoint.model.User;
-import com.example.springauthenticateendpoint.repository.DoctorRepository;
+
 import com.example.springauthenticateendpoint.repository.UserRepository;
 import com.example.springauthenticateendpoint.response.JwtResponse;
 import com.example.springauthenticateendpoint.response.MessageResponse;
+import com.example.springauthenticateendpoint.service.AppointmentService;
 import com.example.springauthenticateendpoint.util.JwtUtil;
 
 
@@ -43,10 +37,11 @@ public class ApplicationController {
 
 
 	@Autowired
-	private UserRepository userRepo;
+	private AppointmentService appointmentService;
 	
 	@Autowired
-	private DoctorRepository doctorRepo;
+	private UserRepository userRepo;
+	
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -106,8 +101,8 @@ public class ApplicationController {
 			}
 		}
 		
-		@PostMapping("/addDoctor")
-		public ResponseEntity<?> addDoctor(@RequestBody Doctor doctor) 
+		@PostMapping("/addPhysician")
+		public ResponseEntity<?> addDoctor(@RequestBody Physician doctor) 
 		{
 			if(userRepo.existsByUsername(doctor.getUsername())) 
 			{
@@ -115,7 +110,7 @@ public class ApplicationController {
 						.ok()
 						.body(new MessageResponse("Error: Username is already taken!"));
 			}
-			else if(userRepo.existsByEmailId(doctor.getEmailId())) 
+			else if(userRepo.existsByEmailId(doctor.getEmail())) 
 			{
 				return ResponseEntity
 						.ok()
@@ -127,18 +122,19 @@ public class ApplicationController {
 			doctor.setPassword(encryptPass);
 	
 			User user = new User();
-			user.setEmailId(doctor.getEmailId());
+			user.setEmailId(doctor.getEmail());
 			user.setUsername(doctor.getUsername());
 			user.setFirstName(doctor.getFirstName());
 			user.setGovermentId(doctor.getGovermentId());
 			user.setLastName(doctor.getLastName());
 			user.setPassword(doctor.getPassword());
 			user.setPhone(doctor.getPhone());
-			user.setRole(doctor.getRole());
+			user.setRole("DOCTOR");
 			userRepo.save(user);
-			
-			doctor.setId(user.getId());
-			doctorRepo.save(doctor);
+			System.out.println("User Id "+user.getId());
+			doctor.setPhysicainId(user.getId());
+			System.out.println("Id "+doctor.getPhysicainId());
+			appointmentService.addPhysician(doctor);
 			return ResponseEntity.ok(new MessageResponse("Doctor registered successfully!"));
 			}
 		}
