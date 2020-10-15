@@ -22,14 +22,18 @@ public class AppointmentService {
     final String BASE_URL = "http://daily-appointment-service/appointment/";
     private String allAppointmentUrl = BASE_URL + "get-appointment-all";
     private String setAppointmentUrl = BASE_URL + "set-appointment";
-    private String appointmentByPhysician = BASE_URL + "appointment";
+    private String appointmentByPhysician = BASE_URL + "get-appointment";
 
     public GenericResponse getResponse(){
         GenericResponse response = restTemplate.getForObject(allAppointmentUrl, GenericResponse.class);
         response.setMessage("added load balanced");
         return response;
     }
-
+    public GenericResponse addPhysician(Physician physician) 
+    {
+    	System.out.println("Phy Id "+physician.getPhysicainId());
+    	 return restTemplate.postForObject(BASE_URL + "add-physician/"+physician.getPhysicainId(), physician,GenericResponse.class);
+    }
     public GenericResponse setAppointment(Appointment appointment){
         return restTemplate.postForObject(setAppointmentUrl,appointment, GenericResponse.class);
     }
