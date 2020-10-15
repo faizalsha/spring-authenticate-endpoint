@@ -30,4 +30,15 @@ public class LabService {
     public GenericResponse addLabHistory(LabRecordPast labRecordPast){
         return restTemplate.postForObject(BASE_URL + "add-past-testrecord/" + labRecordPast.getTestId(), labRecordPast, GenericResponse.class);
     }
+
+//    public GenericResponse uploadImage(MultipartFile multipartFile){
+//        return
+//            restTemplate.postForObject(BASE_URL + "image/upload",
+//                    multipartFile,
+//                    GenericResponse.class);
+//    }
+//
+//    public GenericResponse retrieveImage(String labTestId){
+//        return restTemplate.getForObject(BASE_URL + "image/get/" + labTestId, GenericResponse.class);
+//    }
 }
