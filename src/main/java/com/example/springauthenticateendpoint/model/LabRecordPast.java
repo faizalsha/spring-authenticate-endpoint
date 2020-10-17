@@ -10,10 +10,10 @@ import javax.persistence.Id;
 public class LabRecordPast {
 
     private String testId;
-    private String test_name;
+    private String treatmentId;
+    private String testName;
     private String physicianId;
     private String patientId;
-    private String tests;
     private String testResults;
     private Date date;
     private Time time;
@@ -23,17 +23,19 @@ public class LabRecordPast {
     }
 
 
-    public LabRecordPast(String testId, String test_name, String physicianId, String patientId, String tests,
+
+    public LabRecordPast(String testId, String treatmentId, String testName, String physicianId, String patientId,
                          String testResults, Date date, Time time) {
         super();
         this.testId = testId;
-        this.test_name = test_name;
+        this.treatmentId = treatmentId;
+        this.testName = testName;
         this.physicianId = physicianId;
         this.patientId = patientId;
-        this.tests = tests;
         this.testResults = testResults;
         this.date = date;
         this.time = time;
+
     }
 
 
@@ -46,14 +48,23 @@ public class LabRecordPast {
         this.testId = testId;
     }
 
-
-    public String getTest_name() {
-        return test_name;
+    public String getTreatmentId() {
+        return treatmentId;
     }
 
 
-    public void setTest_name(String test_name) {
-        this.test_name = test_name;
+    public void setTreatmentId(String treatmentId) {
+        this.treatmentId = treatmentId;
+    }
+
+
+    public String getTestName() {
+        return testName;
+    }
+
+
+    public void setTestName(String testName) {
+        this.testName = testName;
     }
 
 
@@ -77,16 +88,6 @@ public class LabRecordPast {
     }
 
 
-    public String getTests() {
-        return tests;
-    }
-
-
-    public void setTests(String tests) {
-        this.tests = tests;
-    }
-
-
     public String getTestResults() {
         return testResults;
     }
@@ -105,4 +106,15 @@ public class LabRecordPast {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
+    public Time getTime() {
+        return time;
+    }
+
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
 }
