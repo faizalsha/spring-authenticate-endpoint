@@ -25,6 +25,7 @@ import com.example.springauthenticateendpoint.service.AppointmentService;
 import com.example.springauthenticateendpoint.util.JwtUtil;
 
 
+
 @RestController
 public class ApplicationController {
 

@@ -2,6 +2,9 @@ package com.example.springauthenticateendpoint.service;
 
 import com.example.springauthenticateendpoint.model.GenericResponse;
 import com.example.springauthenticateendpoint.model.TreatmentHistory;
+
+import net.bytebuddy.description.type.TypeDescription.Generic;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,5 +40,13 @@ public class HistoryService {
 
     public GenericResponse getSingleRecordById(String recordId){
         return restTemplate.getForObject(BASE_URL + "get-history-by-id/" + recordId, GenericResponse.class);
+    }
+    
+    //hospital-admin
+    public GenericResponse getAllRecord() {
+    	return restTemplate.getForObject(BASE_URL + "get-all-records-to-be-paid", GenericResponse.class);
+    }
+    public GenericResponse updatePayment(String id) {
+    	return restTemplate.getForObject(BASE_URL + "update-payment/" + id, GenericResponse.class);
     }
 }
