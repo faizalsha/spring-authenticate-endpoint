@@ -17,6 +17,7 @@ public class PharmacyService {
     private RestTemplate restTemplate;
     private final String HISTORY_BASE_URL = "http://pharmacy-service/history/pharmacy/";
     private final String CURRENT_BASE_URL = "http://pharmacy-service/pharmacy/";
+    private final String MEDICINE_URL = "http://pharmacy-service/med/";
 
     public GenericResponse getAllRecords(){
         return restTemplate.getForObject(CURRENT_BASE_URL + "get-all-records", GenericResponse.class);
@@ -36,5 +37,9 @@ public class PharmacyService {
 
     public GenericResponse insertHistory(PharmacyHistory history){
         return restTemplate.postForObject(HISTORY_BASE_URL + "insert-history", history, GenericResponse.class);
+    }
+
+    public GenericResponse getMedicineByName(String medName){
+        return restTemplate.getForObject(MEDICINE_URL  + "get-medicine-by-name/" + medName, GenericResponse.class);
     }
 }

@@ -6,10 +6,8 @@ import com.example.springauthenticateendpoint.model.LabRecord;
 import com.example.springauthenticateendpoint.model.LabRecordPast;
 import com.example.springauthenticateendpoint.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/lab")
@@ -20,12 +18,12 @@ public class LabServiceController {
 
     @RequestMapping("/get-all-records")
     public GenericResponse getAllRecords(){
-        return new GenericResponse(1, "success", service.getAllLabRecords());
+        return service.getAllLabRecords();
     }
 
     @RequestMapping(value = "/add-lab-records", method = RequestMethod.POST)
     public GenericResponse addLabRecord(@RequestBody LabRecord record){
-        return new GenericResponse(1, "success", service.addLabRecord(record));
+        return service.addLabRecord(record);
     }
 
     @RequestMapping("/get-all-history")
@@ -37,4 +35,19 @@ public class LabServiceController {
     public GenericResponse addHistory(@RequestBody LabRecordPast history){
         return service.addLabHistory(history);
     }
+
+//    @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
+//    public GenericResponse uploadImage(@RequestParam("file") MultipartFile file){
+//        return service.uploadImage(file);
+//    }
+//
+//    @RequestMapping(value = "image/get/{labTestId}")
+//    public GenericResponse getImage(@PathVariable String labTestId){
+//        return service.retrieveImage(labTestId);
+//    }
+//
+//    @RequestMapping(value = "/sample", method = RequestMethod.POST)
+//    public String testing(){
+//        return "Hello World post request";
+//    }
 }

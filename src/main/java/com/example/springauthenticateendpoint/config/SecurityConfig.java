@@ -51,16 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	
-    	http.csrf().disable().cors().disable().authorizeRequests()
-    	.antMatchers("/register").permitAll()
-    	.antMatchers("/authenticate").permitAll()
-    	.antMatchers("/addDoctor").permitAll()
-         .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-         .anyRequest().authenticated()
-           .and().exceptionHandling().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
+
+
+        http.cors().and().csrf().disable(); //added this line to make post request
+
+//    	http.csrf().disable().cors().disable().authorizeRequests()
+//    	.antMatchers("/register").permitAll()
+//    	.antMatchers("/authenticate").permitAll()
+//    	.antMatchers("/addDoctor").permitAll()
+//         .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+//         .anyRequest().authenticated()
+//           .and().exceptionHandling().and().sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);;
     }
   
 }

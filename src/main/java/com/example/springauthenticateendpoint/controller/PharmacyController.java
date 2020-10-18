@@ -39,4 +39,9 @@ public class PharmacyController {
     public GenericResponse insertHistory(@RequestBody PharmacyHistory history){
         return service.insertHistory(history);
     }
+
+    @RequestMapping("get-medicine-by-name/{medName}")
+    public GenericResponse getMedByName(@PathVariable String medName){
+        return service.getMedicineByName(medName);
+    }
 }
