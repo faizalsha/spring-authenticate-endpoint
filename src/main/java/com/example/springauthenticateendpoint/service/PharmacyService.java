@@ -28,7 +28,7 @@ public class PharmacyService {
     }
 
     public GenericResponse addRecord(PharmacyCurrentRecord record){
-        return restTemplate.postForObject(CURRENT_BASE_URL + "add-record/" , record, GenericResponse.class);
+        return restTemplate.postForObject(CURRENT_BASE_URL + "add-record" , record, GenericResponse.class);
     }
 
     public GenericResponse getAllHistory(){
