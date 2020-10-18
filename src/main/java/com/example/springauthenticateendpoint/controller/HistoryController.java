@@ -5,8 +5,11 @@ import com.example.springauthenticateendpoint.model.LabRecord;
 import com.example.springauthenticateendpoint.model.PharmacyCurrentRecord;
 import com.example.springauthenticateendpoint.model.TreatmentHistory;
 import com.example.springauthenticateendpoint.service.HistoryService;
+
 import com.example.springauthenticateendpoint.service.LabService;
 import com.example.springauthenticateendpoint.service.PharmacyService;
+//import com.example.springauthenticateendpoint.service.HospitalService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +24,14 @@ public class HistoryController {
     private HistoryService historyService;
 
     @Autowired
+
     private PharmacyService pharmacyService;
 
     @Autowired
     private LabService labService;
+
+    //private HospitalService  hospitalService;
+
 
     @RequestMapping("/get-all-records-by-patient-id/{patientId}")
     public GenericResponse getAllRecordsByPatientId(@PathVariable String patientId){
@@ -89,4 +96,25 @@ public class HistoryController {
 //                new Date(10, 10, 10),
 //                new Time(10, 10, 10))));
 //    }
+
+    
+    //hospital - admin
+    @RequestMapping("/get-all-records-to-be-paid")
+    public GenericResponse getRecords() 
+    {
+    	System.out.println("Callrd get all records.......................................................................................");
+    	return historyService.getAllRecord();
+    }
+    
+//    @RequestMapping("get-test-by-name/{name}")
+//    public GenericResponse getTestByName(@PathVariable String name)
+//    {
+//    	return hospitalService.getTestByName(name);
+//    }
+    
+    @RequestMapping("/update-payment/{id}")
+    public GenericResponse updatedPayment(@PathVariable String id)
+    {
+    	return historyService.updatePayment(id);
+    }
 }
