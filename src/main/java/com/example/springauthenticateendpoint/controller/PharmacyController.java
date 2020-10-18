@@ -20,6 +20,11 @@ public class PharmacyController {
         return service.getAllRecords();
     }
 
+    @RequestMapping(value = "/add-record", method = RequestMethod.POST)
+    public GenericResponse addRecord(@RequestBody PharmacyCurrentRecord record){
+        return service.addRecord(record);
+    }
+
     @RequestMapping("/delete-record/{id}")
     public GenericResponse deleteRecord(@PathVariable String id){
         return service.deleteActiveRecordById(id);

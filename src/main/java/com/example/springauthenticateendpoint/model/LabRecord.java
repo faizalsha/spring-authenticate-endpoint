@@ -17,10 +17,9 @@ public class LabRecord {
     }
 
 
-    public LabRecord(String testId, String treatmentId, String testName, String physicianId, String patientId,
+    public LabRecord(String treatmentId, String testName, String physicianId, String patientId,
                      Date date, Time time) {
         super();
-        this.testId = testId;
         this.treatmentId = treatmentId;
         this.testName = testName;
         this.physicianId = physicianId;
