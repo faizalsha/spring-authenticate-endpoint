@@ -17,8 +17,7 @@ public class PharmacyCurrentRecord {
     public PharmacyCurrentRecord() {
     }
 
-    public PharmacyCurrentRecord(String id, String treatmentId, String patientId, String physicianId, String prescription, String medicines, Date date, Time time) {
-        this.id = id;
+    public PharmacyCurrentRecord(String treatmentId, String patientId, String physicianId, String prescription, String medicines, Date date, Time time) {
         this.treatmentId = treatmentId;
         this.patientId = patientId;
         this.physicianId = physicianId;
