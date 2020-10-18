@@ -8,7 +8,7 @@ import com.example.springauthenticateendpoint.service.HistoryService;
 
 import com.example.springauthenticateendpoint.service.LabService;
 import com.example.springauthenticateendpoint.service.PharmacyService;
-//import com.example.springauthenticateendpoint.service.HospitalService;
+import com.example.springauthenticateendpoint.service.HospitalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class HistoryController {
     @Autowired
     private LabService labService;
 
-    //private HospitalService  hospitalService;
+    private HospitalService  hospitalService;
 
 
     @RequestMapping("/get-all-records-by-patient-id/{patientId}")
@@ -106,11 +106,11 @@ public class HistoryController {
     	return historyService.getAllRecord();
     }
     
-//    @RequestMapping("get-test-by-name/{name}")
-//    public GenericResponse getTestByName(@PathVariable String name)
-//    {
-//    	return hospitalService.getTestByName(name);
-//    }
+    @RequestMapping("get-test-by-name/{name}")
+    public GenericResponse getTestByName(@PathVariable String name)
+    {
+    	return hospitalService.getTestByName(name);
+    }
     
     @RequestMapping("/update-payment/{id}")
     public GenericResponse updatedPayment(@PathVariable String id)
