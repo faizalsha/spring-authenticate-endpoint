@@ -25,6 +25,7 @@ public class PharmacyController {
         return service.deleteActiveRecordById(id);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/insert-record", method = RequestMethod.POST)
     public GenericResponse insertRecord(@RequestBody PharmacyCurrentRecord record){
         return service.addRecord(record);

@@ -13,6 +13,8 @@ public class PharmacyHistory {
     private String medicines;
     private Date date;
     private Time time;
+    
+   
 
     public PharmacyHistory() {
     }

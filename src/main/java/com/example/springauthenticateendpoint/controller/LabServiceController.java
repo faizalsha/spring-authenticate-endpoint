@@ -7,7 +7,7 @@ import com.example.springauthenticateendpoint.model.LabRecordPast;
 import com.example.springauthenticateendpoint.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 @RestController
 @RequestMapping("/lab")
@@ -30,7 +30,8 @@ public class LabServiceController {
     public GenericResponse getAllHistory(){
         return service.getAllLabHistory();
     }
-
+    
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/add-history", method = RequestMethod.POST)
     public GenericResponse addHistory(@RequestBody LabRecordPast history){
         return service.addLabHistory(history);
