@@ -42,4 +42,7 @@ public class PharmacyService {
     public GenericResponse getMedicineByName(String medName){
         return restTemplate.getForObject(MEDICINE_URL  + "get-medicine-by-name/" + medName, GenericResponse.class);
     }
+    public GenericResponse getPharmacyById(String id){
+        return restTemplate.getForObject(CURRENT_BASE_URL  + "get-pharmacy-by-id/" + id, GenericResponse.class);
+    }
 }

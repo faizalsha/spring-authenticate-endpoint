@@ -29,8 +29,10 @@ public class HistoryController {
 
     @Autowired
     private LabService labService;
-
-    private HospitalService  hospitalService;
+    
+    @Autowired
+    private HospitalService hospitalService;
+    
 
 
     @RequestMapping("/get-all-records-by-patient-id/{patientId}")
@@ -109,6 +111,7 @@ public class HistoryController {
     @RequestMapping("get-test-by-name/{name}")
     public GenericResponse getTestByName(@PathVariable String name)
     {
+    	System.out.println(name+"......................................................//////////////");
     	return hospitalService.getTestByName(name);
     }
     

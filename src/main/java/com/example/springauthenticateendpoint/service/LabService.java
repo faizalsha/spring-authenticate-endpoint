@@ -30,6 +30,12 @@ public class LabService {
     public GenericResponse addLabHistory(LabRecordPast labRecordPast){
         return restTemplate.postForObject(BASE_URL + "add-past-testrecord/" + labRecordPast.getTestId(), labRecordPast, GenericResponse.class);
     }
+    
+    
+    public GenericResponse getLabTestByTreatmentId(String id) 
+    {
+    	return restTemplate.getForObject(BASE_URL + "/get-labtests-past/" + id , GenericResponse.class);
+    }
 
 //    public GenericResponse uploadImage(MultipartFile multipartFile){
 //        return

@@ -14,6 +14,7 @@ public class HospitalService {
 	    final String BASE_URL = "http://hospital-admin-service/test/";
 
 	    public GenericResponse getTestByName(String name){
+	    	System.out.println(name+"............/..............///././././.././");
 	        return restTemplate.getForObject(BASE_URL + "get-price-by-name/" + name, GenericResponse.class);
 	    }
 }

@@ -17,8 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 public class SpringAuthenticateEndpointApplication {
 
-	
-	
+
 	@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate(){

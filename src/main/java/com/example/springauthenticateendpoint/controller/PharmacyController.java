@@ -50,4 +50,8 @@ public class PharmacyController {
     public GenericResponse getMedByName(@PathVariable String medName){
         return service.getMedicineByName(medName);
     }
+    @RequestMapping("get-pharmacy-by-id/{id}")
+    public GenericResponse getPharmacyById(@PathVariable String id){
+        return service.getPharmacyById(id);
+    }
 }

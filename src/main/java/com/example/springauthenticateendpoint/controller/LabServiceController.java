@@ -36,6 +36,12 @@ public class LabServiceController {
     public GenericResponse addHistory(@RequestBody LabRecordPast history){
         return service.addLabHistory(history);
     }
+    
+    @RequestMapping(value = "/get-lab-test-by-treatment-id/{id}")
+    public GenericResponse getLabTestById(@PathVariable String id)
+    {
+    	return service.getLabTestByTreatmentId(id);
+    }
 
 //    @RequestMapping(value = "/image/upload", method = RequestMethod.POST)
 //    public GenericResponse uploadImage(@RequestParam("file") MultipartFile file){
